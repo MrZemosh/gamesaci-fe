@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 export const tiscaliModule = async () => {
   const completeData: any = [];
 
-  const { data } = await axios.get('http://localhost:8080/https://games.tiscali.cz/');
+  const { data } = await axios.get('https://gamesaci-be.herokuapp.com/https://games.tiscali.cz/');
   const $ = cheerio.load(data);
 
   $('.media-article').each(function (index: any, item: any) {

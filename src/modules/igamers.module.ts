@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 export const igamersModule = async () => {
   const completeData: any = [];
 
-  const { data } = await axios.get('http://localhost:8080/https://igamers.cz/');
+  const { data } = await axios.get('https://gamesaci-be.herokuapp.com/https://igamers.cz/');
   const $ = cheerio.load(data);
 
   $('.list-card .list-card-wrap').each(function (index: any, item: any) {

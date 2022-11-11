@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 export const konzolisteModule = async () => {
   const completeData: any = [];
 
-  const { data } = await axios.get('http://localhost:8080/https://www.konzoliste.cz/herni-zpravodaj/');
+  const { data } = await axios.get('https://gamesaci-be.herokuapp.com/https://www.konzoliste.cz/herni-zpravodaj/');
   const $ = cheerio.load(data);
 
   $('.news-item').each(function (index: any, item: any) {
