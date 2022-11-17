@@ -20,7 +20,7 @@ export const tiscaliModule = async () => {
     finalData.date = $(item).find('.article-info > span').text().trim().slice(0, -10).replace(' ', '').replace(' ', '');
     finalData.link = $(item).find('.article-title').children('a').attr('href');
     finalData.imageURL = $(item).find('.image-wrapper picture').children('img').attr('data-src');
-    finalData.creator = 'Games.tiscali.cz';
+    finalData.creator = 'Tiscali.cz';
 
     completeData.push(finalData);
   });

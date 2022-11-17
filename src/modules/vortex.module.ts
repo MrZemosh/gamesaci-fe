@@ -23,10 +23,6 @@ export const vortexModule = async () => {
     finalData.link = $(item).find('.content > h2').children('a').attr('href');
     finalData.creator = 'Vortex.cz';
 
-    console.log(finalData.name);
-    console.log(finalData.date);
-    console.log(finalData.link);
-    console.log(finalData.imageURL);
     completeData.push(finalData);
   });
 

@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export const Filter = () => {
+export const Filter = ({ onChange }: any) => {
   const [selected, setSelected] = useState<string[]>([]);
   const [isShowed, setIsShowed] = useState<boolean>(false);
 
-  const [items, setItems] = useState<string[]>(['IGamers.cz', 'Tiscali', 'Seznam', 'kokotina']);
+  const [items, setItems] = useState<string[]>(['IGamers.cz', 'Tiscali.cz', 'Konzoliste.cz', 'Vortex.cz']);
+
+  useEffect(() => {
+    onChange(selected);
+  }, [selected]);
 
   return (
     <div className="flex flex-col items-start justify-center gap-1 w-auto">
@@ -37,7 +41,7 @@ export const Filter = () => {
           ))}
 
           <span
-            className="hover:text-white duration-75 cursor-pointer"
+            className="hover:text-white duration-75 items-center justify-center cursor-pointer"
             onClick={() => {
               setSelected([]);
             }}

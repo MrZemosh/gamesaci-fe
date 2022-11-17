@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react';
 import './App.css';
-import InfiniteScroll from 'react-infinite-scroller';
 
 /* Filter */
 import { Filter } from './components/Filter';
@@ -13,6 +12,7 @@ import { vortexModule } from './modules/vortex.module';
 
 const App: FC = (): JSX.Element => {
   const [scrapedData, setScrapedData] = useState<any[]>([]);
+  const [scrapedDataFiltered, setScrapedDataFiltered] = useState<any[]>([]);
 
   useEffect(() => {
     const T = async () => {
@@ -21,6 +21,7 @@ const App: FC = (): JSX.Element => {
       const konzolisteResponse = await konzolisteModule();
       const vortexResponse = await vortexModule();
       setScrapedData([...igamersResponse, ...tiscaliResponse, ...konzolisteResponse, ...vortexResponse]);
+      setScrapedDataFiltered([...igamersResponse, ...tiscaliResponse, ...konzolisteResponse, ...vortexResponse]);
     };
     T();
   }, []);
@@ -34,12 +35,17 @@ const App: FC = (): JSX.Element => {
           <h1 className="text-4xl w-full text-center semi-md:text-start semi-md:w-1/2 my-3 md:my-0 font-bold uppercase text-white">
             Gamesáci
           </h1>
-          <Filter />
+          <Filter
+            onChange={(items: any[]) => {
+              if (items.length === 0) return setScrapedDataFiltered(scrapedData);
+              setScrapedDataFiltered(scrapedData.filter((item: any) => items.includes(item.creator)));
+            }}
+          />
         </div>
       </div>
       <div className="flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:grid-cols-2 mt-48 md:mt-32">
-          {scrapedData
+          {scrapedDataFiltered
             .sort((a: any, b: any) => {
               const fixedA = a.date.split('.');
               const fixedB = b.date.split('.');
