@@ -25,6 +25,5 @@ export const konzolisteModule = async () => {
     completeData.push(finalData);
   });
 
-  console.log(completeData);
   return completeData;
 };

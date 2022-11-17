@@ -17,7 +17,7 @@ export const igamersModule = async () => {
     };
 
     finalData.name = $(item).find('.list-card-title').text().trim();
-    finalData.date = $(item).find('.list-card-date').text();
+    finalData.date = $(item).find('.list-card-date').text().trim();
     finalData.link = $(item).find('.list-card-title').children('a').attr('href');
     finalData.imageURL = $(item).find('.list-card-image').attr('style').substring(22).slice(0, -3);
     finalData.creator = 'IGamers.cz';

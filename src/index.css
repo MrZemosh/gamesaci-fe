@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.tl-fade {
+  position: fixed;
+  left: -50px;
+  top: -50px;
+  width: 0px;
+  height: 0px;
+  box-shadow: 0px 0px 500px 550px #14618982;
+}
+
+.br-fade {
+  position: fixed;
+  right: -50px;
+  bottom: -50px;
+  width: 0px;
+  height: 0px;
+  box-shadow: 0px 0px 500px 550px #14897b43;
+}
