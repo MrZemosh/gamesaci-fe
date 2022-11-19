@@ -4,7 +4,7 @@ export const Filter = ({ onChange }: any) => {
   const [selected, setSelected] = useState<string[]>([]);
   const [isShowed, setIsShowed] = useState<boolean>(false);
 
-  const [items, setItems] = useState<string[]>(['IGamers.cz', 'Tiscali.cz', 'Konzoliště.cz', 'Vortex.cz']);
+  const [items, setItems] = useState<string[]>(['IGamers.cz', 'Tiscali.cz', 'Konzoliště', 'Vortex.cz']);
 
   useEffect(() => {
     onChange(selected);
