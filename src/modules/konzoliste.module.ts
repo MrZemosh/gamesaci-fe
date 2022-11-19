@@ -20,7 +20,7 @@ export const konzolisteModule = async () => {
     finalData.date = $(item).find('time').text().trim();
     finalData.link = 'https://www.konzoliste.cz' + $(item).find('.text').children('a').attr('href');
     finalData.imageURL = $(item).find('.image').children('a').children('img').attr('src');
-    finalData.creator = 'Konzoliste.cz';
+    finalData.creator = 'Konzoliště.cz';
 
     completeData.push(finalData);
   });

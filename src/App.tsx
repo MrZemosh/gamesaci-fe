@@ -1,8 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 import './App.css';
 
-/* Filter */
+/* Components */
 import { Filter } from './components/Filter';
+import { Footer } from './components/Footer';
 
 /* Scraping Modules */
 import { tiscaliModule } from './modules/tiscali.module';
@@ -14,6 +15,7 @@ import useDeviceDetect from './hooks/useDeviceDetect';
 const App: FC = (): JSX.Element => {
   const [scrapedData, setScrapedData] = useState<any[]>([]);
   const [scrapedDataFiltered, setScrapedDataFiltered] = useState<any[]>([]);
+  const [isLoaded, setLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [height, setHeight] = useState(0);
   const { isMobile } = useDeviceDetect();
@@ -37,12 +39,14 @@ const App: FC = (): JSX.Element => {
 
   useEffect(() => {
     const T = async () => {
+      setLoaded(false);
       const igamersResponse = await igamersModule();
       const tiscaliResponse = await tiscaliModule();
       const konzolisteResponse = await konzolisteModule();
       const vortexResponse = await vortexModule();
       setScrapedData([...igamersResponse, ...tiscaliResponse, ...konzolisteResponse, ...vortexResponse]);
       setScrapedDataFiltered([...igamersResponse, ...tiscaliResponse, ...konzolisteResponse, ...vortexResponse]);
+      setLoaded(true);
     };
     T();
   }, []);
@@ -71,6 +75,11 @@ const App: FC = (): JSX.Element => {
         </div>
       </div>
       <div className="flex justify-center">
+        {!isLoaded && (
+          <div className="flex justify-center items-center text-center w-full h-full min-h-screen text-white">
+            Načítám články...
+          </div>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:grid-cols-2 mt-48 md:mt-32">
           {scrapedDataFiltered
             .sort((a: any, b: any) => {
@@ -100,6 +109,7 @@ const App: FC = (): JSX.Element => {
             ))}
         </div>
       </div>
+      {isLoaded && <Footer />}
     </div>
   );
 };
