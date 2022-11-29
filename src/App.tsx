@@ -11,6 +11,7 @@ import { konzolisteModule } from './modules/konzoliste.module';
 import { igamersModule } from './modules/igamers.module';
 import { vortexModule } from './modules/vortex.module';
 import useDeviceDetect from './hooks/useDeviceDetect';
+//import { replayModule } from './modules/replay.module';
 
 const App: FC = (): JSX.Element => {
   const [scrapedData, setScrapedData] = useState<any[]>([]);
@@ -40,6 +41,7 @@ const App: FC = (): JSX.Element => {
   useEffect(() => {
     const T = async () => {
       setLoaded(false);
+      //const replayResponse = await replayModule();
       const igamersResponse = await igamersModule();
       const tiscaliResponse = await tiscaliModule();
       const konzolisteResponse = await konzolisteModule();
